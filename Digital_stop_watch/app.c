@@ -2,7 +2,7 @@
 
 /*--------------------------------------------------------------------------------------------------------------
 
- &[FILE NAME]    :adc.h
+ &[FILE NAME]    :app.c
 
  &[AUTHOR(S)]    : Muhammed Eldabea Hashem
 
@@ -40,6 +40,27 @@ volatile unsigned char  Hours_counter0 = 0 ;
 volatile unsigned char  Hours_counter1 = 0 ;
 volatile unsigned char  stop_Flag = 0 ;
 volatile unsigned char  resume_Flag = 0 ;
+
+
+/* ===================================================================== *
+       --------------------------> ISR <------------------------
+ * ===================================================================== */
+
+
+ISR(INT0_vect)
+{  /*used to stop counter */
+	stop_Flag = 1 ;
+	resume_Flag = 0;
+}
+
+
+ISR(INT1_vect)
+{
+	/*used to resume counter */
+	stop_Flag = 0 ;
+	resume_Flag = 1;
+}
+
 
 
 
